@@ -25,7 +25,8 @@ Game.Play.prototype = {
 	}
 
 	game.camera.bounds = null;
-	game.camera.follow(A.player, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
+	game.camera.follow(A.player);
+	game.camera.deadzone = new Phaser.Rectangle(A.w / 2, 0, A.w / 8, A.h);
     },
 
     update: function () {
