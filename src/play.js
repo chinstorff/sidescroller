@@ -14,19 +14,26 @@ Game.Play.prototype = {
 	A.player.anchor.setTo(0.5, -2.5);
 	game.physics.arcade.enable(A.player);
 	A.player.body.gravity.y = A.playerGravity;
+	A.player.body.collideWorldBounds = true;
 
 	A.blocks = game.add.group();
 	A.blocks.enableBody = true;
 
-	var block;
+/*	var block;
 	for (var i = 0; i < 40; i++) {
 	    block = A.blocks.create(21 * i, 294, 'blocks', 7);
 	    block.body.immovable = true;
-	}
+	}*/
 
-	game.camera.bounds = null;
-	game.camera.follow(A.player);
-	game.camera.deadzone = new Phaser.Rectangle(A.w / 2, 0, A.w / 8, A.h);
+	A.map = game.add.tilemap('level1');
+	A.map.addTilesetImage('blocks', 'blocks');
+	A.layer = A.map.createLayer('Tile Layer 1');
+	A.map.createFromObjects('Object Layer 1', 18, 'blocks', 0, true, false, A.blocks);
+	A.layer.resizeWorld();
+
+//	game.camera.bounds = null;
+//	game.camera.follow(A.player);
+//	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
     },
 
     update: function () {
@@ -39,7 +46,9 @@ Game.Play.prototype = {
 	A.keys = game.input.keyboard.createCursorKeys();
 
 	A.keys.up.onDown.add(function () {
+	    console.log('up');
 	    if (A.player.body.touching.down) {
+		console.log('and away');
 		A.player.body.velocity.y = -A.playerJumpSpeed;
 	    }
 	}, this);
