@@ -6,7 +6,8 @@ Game.Load.prototype = {
 
 
 	// load everything
-
+	game.load.spritesheet('blocks', 'assets/img/blocks.png', 21, 21, 12);
+	game.load.image('player', 'assets/img/player.png');
 
     },
 
