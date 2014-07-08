@@ -38,9 +38,7 @@ Game.Play.prototype = {
 	A.keys = game.input.keyboard.createCursorKeys();
 
 	A.keys.up.onDown.add(function () {
-	    console.log('up');
 	    if (A.player.body.velocity.y === 0) {
-		console.log('and away');
 		A.player.body.velocity.y = -A.playerJumpSpeed;
 	    }
 	}, this);
