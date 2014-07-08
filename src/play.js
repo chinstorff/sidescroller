@@ -27,8 +27,8 @@ Game.Play.prototype = {
 
 	A.map = game.add.tilemap('level1');
 	A.map.addTilesetImage('blocks', 'blocks');
-	A.layer = A.map.createLayer('Tile Layer 1');
-	A.map.createFromObjects('Object Layer 1', 18, 'blocks', 0, true, false, A.blocks);
+	A.map.setCollisionBetween(8, 9);
+	A.layer = A.map.createLayer('blocks');
 	A.layer.resizeWorld();
 
 //	game.camera.bounds = null;
@@ -37,7 +37,7 @@ Game.Play.prototype = {
     },
 
     update: function () {
-	game.physics.arcade.collide(A.player, A.blocks);
+	game.physics.arcade.collide(A.player, A.layer);
 
 	this.updateControls();
     },
@@ -47,7 +47,7 @@ Game.Play.prototype = {
 
 	A.keys.up.onDown.add(function () {
 	    console.log('up');
-	    if (A.player.body.touching.down) {
+	    if (A.player.body.velocity.y === 0) {
 		console.log('and away');
 		A.player.body.velocity.y = -A.playerJumpSpeed;
 	    }
