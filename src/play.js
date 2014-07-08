@@ -16,24 +16,14 @@ Game.Play.prototype = {
 	A.player.body.gravity.y = A.playerGravity;
 	A.player.body.collideWorldBounds = true;
 
-	A.blocks = game.add.group();
-	A.blocks.enableBody = true;
-
-/*	var block;
-	for (var i = 0; i < 40; i++) {
-	    block = A.blocks.create(21 * i, 294, 'blocks', 7);
-	    block.body.immovable = true;
-	}*/
-
 	A.map = game.add.tilemap('level1');
 	A.map.addTilesetImage('blocks', 'blocks');
 	A.map.setCollisionBetween(8, 9);
 	A.layer = A.map.createLayer('blocks');
 	A.layer.resizeWorld();
 
-//	game.camera.bounds = null;
-//	game.camera.follow(A.player);
-//	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
+	game.camera.follow(A.player);
+	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
     },
 
     update: function () {
