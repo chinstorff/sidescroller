@@ -73,13 +73,15 @@ Game.Play.prototype = {
 	A.level.map = game.add.tilemap('level' + levelID);
 	A.level.map.addTilesetImage('blocks', 'blocks');
 	A.level.map.addTilesetImage('sky', 'sky');
-	A.level.map.addTilesetImage('scarab', 'scarab');
 
 	A.level.layer.sky = A.level.map.createLayer('sky');
 	A.level.layer.blocks = A.level.map.createLayer('blocks');
 	A.level.map.setCollisionBetween(8, 9, true, A.level.layer.blocks);
-	A.level.layer.scarabs = A.level.map.createLayer('scarabs');
 	A.level.layer.sky.resizeWorld();
+
+	A.scarabs = game.add.group();
+	A.scarabs.enableBody = true;
+	A.level.map.createFromObjects('objects', 58, 'scarab', 0, true, false, A.scarabs);
 	
 	this.createPlayer(50, 100);
     },

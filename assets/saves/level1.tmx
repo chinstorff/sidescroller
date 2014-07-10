@@ -22,10 +22,8 @@
    eJxjYKAP4KCTPbQGo/4YXGDUHwML0N09HP3BgYQHOyAmPgbSLxx4MLo6fHx08+gFSE0L2PyBz8+09gu5aRmfenr6hdK8SEjfQMULqYAS/w8mv1DiFnLT8XDAAGZ/A2k=
   </data>
  </layer>
- <objectgroup name="objects" width="50" height="15"/>
- <layer name="scarabs" width="50" height="15">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaOAcmA10A4Y5gAAW3gAOw==
-  </data>
- </layer>
+ <objectgroup name="objects" width="50" height="15">
+  <object gid="58" x="336" y="168"/>
+  <object gid="58" x="126" y="231"/>
+ </objectgroup>
 </map>
