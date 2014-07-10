@@ -11,13 +11,11 @@ Game.Play.prototype = {
 	this.createControls();
 
 	this.loadLevel(1);
-
-	A.food = game.add.sprite(210 + 17, A.h - 21, 'scarab');
-	A.food.anchor.setTo(0.5, 1);
     },
 
     update: function () {
 	game.physics.arcade.collide(A.player, A.level.layer.blocks);
+	game.physics.arcade.collide(A.player, A.level.layer.scarabs);
 
 	this.updateControls();
     },
@@ -75,9 +73,12 @@ Game.Play.prototype = {
 	A.level.map = game.add.tilemap('level' + levelID);
 	A.level.map.addTilesetImage('blocks', 'blocks');
 	A.level.map.addTilesetImage('sky', 'sky');
+	A.level.map.addTilesetImage('scarab', 'scarab');
+
 	A.level.layer.sky = A.level.map.createLayer('sky');
 	A.level.layer.blocks = A.level.map.createLayer('blocks');
 	A.level.map.setCollisionBetween(8, 9, true, A.level.layer.blocks);
+	A.level.layer.scarabs = A.level.map.createLayer('scarabs');
 	A.level.layer.sky.resizeWorld();
 	
 	this.createPlayer(50, 100);

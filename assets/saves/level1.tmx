@@ -9,6 +9,9 @@
  <tileset firstgid="57" name="sky" tilewidth="21" tileheight="21">
   <image source="../img/block-sky.png" width="21" height="21"/>
  </tileset>
+ <tileset firstgid="58" name="scarab" tilewidth="28" tileheight="21">
+  <image source="../img/scarab.png" width="28" height="21"/>
+ </tileset>
  <layer name="sky" width="50" height="15">
   <data encoding="base64" compression="zlib">
    eJztw0ENAAAMA6GzVf/GZmMPSFg1VVX19QMLaKb/
@@ -20,4 +23,9 @@
   </data>
  </layer>
  <objectgroup name="objects" width="50" height="15"/>
+ <layer name="scarabs" width="50" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaOAcmA10A4Y5gAAW3gAOw==
+  </data>
+ </layer>
 </map>
