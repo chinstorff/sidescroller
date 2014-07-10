@@ -15,7 +15,7 @@ Game.Play.prototype = {
 
     update: function () {
 	game.physics.arcade.collide(A.player, A.level.layer.blocks);
-	game.physics.arcade.collide(A.player, A.level.layer.scarabs);
+	game.physics.arcade.overlap(A.player, A.scarabs, this.takeScarab, null, this);
 
 	this.updateControls();
     },
@@ -91,5 +91,10 @@ Game.Play.prototype = {
 	if (A.player.fill >= 9) {
 	    A.player.fill -= 9;
 	}
+    },
+
+    takeScarab: function (player, scarab) {
+	scarab.kill();
+	this.incrementFill();
     },
 };

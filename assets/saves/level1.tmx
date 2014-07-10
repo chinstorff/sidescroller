@@ -25,5 +25,11 @@
  <objectgroup name="objects" width="50" height="15">
   <object gid="58" x="336" y="168"/>
   <object gid="58" x="126" y="231"/>
+  <object gid="58" x="568" y="189"/>
+  <object gid="58" x="610" y="126"/>
+  <object gid="58" x="820" y="294"/>
+  <object gid="58" x="925" y="294"/>
+  <object gid="58" x="547" y="294"/>
+  <object gid="58" x="295" y="294"/>
  </objectgroup>
 </map>

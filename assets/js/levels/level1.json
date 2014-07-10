@@ -53,6 +53,90 @@
                  "width":0,
                  "x":126,
                  "y":231
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":568,
+                 "y":189
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":610,
+                 "y":126
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":820,
+                 "y":294
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":925,
+                 "y":294
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":547,
+                 "y":294
+                }, 
+                {
+                 "gid":58,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":295,
+                 "y":294
                 }],
          "opacity":1,
          "type":"objectgroup",
