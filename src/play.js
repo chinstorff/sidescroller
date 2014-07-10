@@ -10,27 +10,11 @@ Game.Play.prototype = {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.createControls();
 
-	A.map = game.add.tilemap('level1');
-	A.map.addTilesetImage('blocks', 'blocks');
-	A.map.addTilesetImage('sky', 'sky');
-	A.layerSky = A.map.createLayer('sky');
-	A.layer = A.map.createLayer('blocks');
-	A.map.setCollisionBetween(8, 9, true, A.layer);
-	A.layer.resizeWorld();
-
-	A.player = game.add.sprite(50, 100, 'player', 1);
-	A.player.anchor.setTo(0.5, -2.5);
-	game.physics.arcade.enable(A.player);
-	A.player.body.gravity.y = A.playerGravity;
-	A.player.body.collideWorldBounds = true;
-	A.player.fill = 0;
-
-	game.camera.follow(A.player);
-	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
+	this.loadLevel(1);
     },
 
     update: function () {
-	game.physics.arcade.collide(A.player, A.layer);
+	game.physics.arcade.collide(A.player, A.level.layer.blocks);
 
 	this.updateControls();
     },
@@ -52,6 +36,18 @@ Game.Play.prototype = {
 	}, this);
     },
 
+    createPlayer: function (x, y) {
+	A.player = game.add.sprite(x, y, 'player', 1);
+	A.player.anchor.setTo(0.5, -2.5);
+	game.physics.arcade.enable(A.player);
+	A.player.body.gravity.y = A.playerGravity;
+	A.player.body.collideWorldBounds = true;
+	A.player.fill = 0;
+
+	game.camera.follow(A.player);
+	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
+    },
+
     updateControls: function () {
 	if (A.keys.left.isDown && !A.keys.right.isDown) {
 	    A.player.body.velocity.x = -A.playerSpeed;
@@ -65,5 +61,18 @@ Game.Play.prototype = {
 	    A.player.body.velocity.x = 0;
 	    A.player.frame = 1 + A.player.fill * 3;
 	}
+    },
+
+    loadLevel: function (levelID) {
+	A.level = { layer: {} };
+	A.level.map = game.add.tilemap('level' + levelID);
+	A.level.map.addTilesetImage('blocks', 'blocks');
+	A.level.map.addTilesetImage('sky', 'sky');
+	A.level.layer.sky = A.level.map.createLayer('sky');
+	A.level.layer.blocks = A.level.map.createLayer('blocks');
+	A.level.map.setCollisionBetween(8, 9, true, A.level.layer.blocks);
+	A.level.layer.sky.resizeWorld();
+	
+	this.createPlayer(50, 100);
     },
 };
