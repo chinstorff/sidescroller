@@ -21,19 +21,19 @@ Game.Play.prototype = {
 
     createControls: function () {
 	A.keys = game.input.keyboard.createCursorKeys();
+	A.keys.A = game.input.keyboard.addKey(Phaser.Keyboard.A);
+	A.keys.S = game.input.keyboard.addKey(Phaser.Keyboard.S);
+	A.keys.D = game.input.keyboard.addKey(Phaser.Keyboard.D);
+	A.keys.W = game.input.keyboard.addKey(Phaser.Keyboard.W);
 
-	A.keys.up.onDown.add(function () {
+	var jump = function () {
 	    if (A.player.body.velocity.y === 0) {
 		A.player.body.velocity.y = -A.playerJumpSpeed;
 	    }
-	}, this);
+	};
 
-	A.keys.down.onDown.add(function () {
-	    A.player.fill += 1;
-	    if (A.player.fill >= 9) {
-		A.player.fill -= 9;
-	    }
-	}, this);
+	A.keys.up.onDown.add(jump, this);
+	A.keys.W.onDown.add(jump, this);
     },
 
     createPlayer: function (x, y) {
@@ -43,17 +43,21 @@ Game.Play.prototype = {
 	A.player.body.gravity.y = A.playerGravity;
 	A.player.body.collideWorldBounds = true;
 	A.player.fill = 0;
+	A.player.canJump = false;
 
 	game.camera.follow(A.player);
 	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
     },
 
     updateControls: function () {
-	if (A.keys.left.isDown && !A.keys.right.isDown) {
+	var left = (A.keys.left.isDown || A.keys.A.isDown) && !(A.keys.right.isDown || A.keys.D.isDown);
+	var right = (A.keys.right.isDown || A.keys.D.isDown) && !(A.keys.left.isDown || A.keys.A.isDown);
+
+	if (left) {
 	    A.player.body.velocity.x = -A.playerSpeed;
 	    A.player.frame = 0 + A.player.fill * 3;
 	}
-	else if (A.keys.right.isDown && !A.keys.left.isDown) {
+	else if (right) {
 	    A.player.body.velocity.x = A.playerSpeed;
 	    A.player.frame = 2 + A.player.fill * 3;
 	}
@@ -74,5 +78,12 @@ Game.Play.prototype = {
 	A.level.layer.sky.resizeWorld();
 	
 	this.createPlayer(50, 100);
+    },
+
+    incrementFill: function () {
+	A.player.fill += 1;
+	if (A.player.fill >= 9) {
+	    A.player.fill -= 9;
+	}
     },
 };
