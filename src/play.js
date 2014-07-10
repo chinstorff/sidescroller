@@ -11,6 +11,9 @@ Game.Play.prototype = {
 	this.createControls();
 
 	this.loadLevel(1);
+
+	A.food = game.add.sprite(210 + 17, A.h - 21, 'scarab');
+	A.food.anchor.setTo(0.5, 1);
     },
 
     update: function () {
