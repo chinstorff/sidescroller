@@ -14,6 +14,7 @@ Game.Load.prototype = {
 	game.load.tilemap('level1', 'assets/js/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
 	game.load.tilemap('level2', 'assets/js/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
 	game.load.tilemap('level3', 'assets/js/levels/level3.json', null, Phaser.Tilemap.TILED_JSON);
+	game.load.tilemap('level4', 'assets/js/levels/level4.json', null, Phaser.Tilemap.TILED_JSON);
     },
 
     create: function () {

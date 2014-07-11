@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="16" tilewidth="21" tileheight="21">
+ <tileset firstgid="1" name="blocks" tilewidth="21" tileheight="21">
+  <image source="../img/blocks.png" width="252" height="21"/>
+ </tileset>
+ <tileset firstgid="13" name="sky" tilewidth="21" tileheight="21">
+  <image source="../img/block-sky.png" width="21" height="21"/>
+ </tileset>
+ <tileset firstgid="14" name="scarab" tilewidth="21" tileheight="21">
+  <image source="../img/scarab.png" width="21" height="21"/>
+ </tileset>
+ <tileset firstgid="15" name="player" tilewidth="20" tileheight="30">
+  <image source="../img/player.png" width="60" height="270"/>
+ </tileset>
+ <layer name="sky" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzjZWBg4B3Fo3gUj+JRPIpH8SgexVTDgx0AAC3uHnk=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="40" height="16">
+  <object gid="16" x="42" y="21"/>
+  <object gid="5" x="756" y="336"/>
+  <object gid="14" x="714" y="273"/>
+ </objectgroup>
+ <layer name="blocks" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgYGGAABg92MBgd98oGAWjYHAAdix4FCAAJeHDgoQHI6CGu2iZfgZruMEAMfUsBxZMD4Cc7pDZhNyDTZ5WGNl99AwbSgAABGQB5g==
+  </data>
+ </layer>
+</map>

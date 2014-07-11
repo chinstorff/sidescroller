@@ -1,7 +1,6 @@
 Game.Play = function (game) { };
 
 A.playerSpeed = 120;
-A.playerJumpSpeed = 250;
 A.playerGravity = 1000;
 A.currentLevel = 0;
 
@@ -77,6 +76,8 @@ Game.Play.prototype = {
     },
 
     loadLevel: function (levelID) {
+	A.currentLevel = levelID;
+
 	this.clearMap();
 	
 	A.level = { layer: {} };
@@ -107,6 +108,9 @@ Game.Play.prototype = {
 
     nextLevel: function () {
 	A.score = A.level.score || 0;
+
+	this.updatePowerups();
+
 	this.loadLevel(++A.currentLevel);
     },
 
@@ -126,8 +130,16 @@ Game.Play.prototype = {
 	return fill;
     },
 
+    updatePowerups: function () {
+	A.playerJumpSpeed = A.score >= 9 ? 325 : 250;
+    },
+
     takeScarab: function (player, scarab) {
 	scarab.kill();
 	A.level.score++;
+	if (A.level.score === 8) {
+	    A.level.score++;
+	}
+	this.updatePowerups();
     },
 };
