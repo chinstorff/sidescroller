@@ -20,10 +20,11 @@
  <objectgroup name="objects" width="40" height="16">
   <object gid="16" x="42" y="21"/>
   <object gid="5" x="756" y="336"/>
+  <object gid="14" x="378" y="147"/>
  </objectgroup>
  <layer name="blocks" width="40" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgYGGAABg92MBgd98oGAWjYBQMd8CChAczGEnu40DDlABq17PobqLEjcjpDpmN7n9SMS43k4OR3UeN+KAHAACMfgGN
+   eJxjYGBgYGGAABg92MBgd98oGAWjgDaAAwseDACXewaDO4mxnxw3siBhcgCpYUNuWJLjPkrijFS9pLiPWumJGHNIrWdpkc5xmYmc7pDZ2MoHWudBXHYhu2+gywBiAQBo6wHd
   </data>
  </layer>
 </map>

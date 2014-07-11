@@ -12,6 +12,7 @@ Game.Load.prototype = {
 	game.load.image('scarab', 'assets/img/scarab.png');
 
 	game.load.tilemap('level1', 'assets/js/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
+	game.load.tilemap('level2', 'assets/js/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
     },
 
     create: function () {

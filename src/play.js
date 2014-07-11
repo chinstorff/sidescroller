@@ -3,6 +3,7 @@ Game.Play = function (game) { };
 A.playerSpeed = 120;
 A.playerJumpSpeed = 250;
 A.playerGravity = 1000;
+A.currentLevel = 0;
 
 Game.Play.prototype = {
     create: function () {
@@ -10,12 +11,13 @@ Game.Play.prototype = {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.createControls();
 
-	this.loadLevel(1);
+	this.nextLevel();
     },
 
     update: function () {
 	game.physics.arcade.collide(A.player, A.level.layer.blocks);
 	game.physics.arcade.overlap(A.player, A.scarabs, this.takeScarab, null, this);
+	game.physics.arcade.overlap(A.player, A.endZones, this.nextLevel, null, this);
 
 	this.updateControls();
     },
@@ -69,6 +71,8 @@ Game.Play.prototype = {
     },
 
     loadLevel: function (levelID) {
+	this.clearMap();
+
 	A.level = { layer: {} };
 	A.level.map = game.add.tilemap('level' + levelID);
 	A.level.map.addTilesetImage('blocks', 'blocks');
@@ -87,8 +91,20 @@ Game.Play.prototype = {
 	A.scarabs = game.add.group();
 	A.scarabs.enableBody = true;
 	A.level.map.createFromObjects('objects', 14, 'scarab', 0, true, false, A.scarabs);
+
+	A.endZones = game.add.group();
+	A.endZones.enableBody = true;
+	A.level.map.createFromObjects('objects', 5, 'blocks', 5, true, false, A.endZones);
     },
 
+    nextLevel: function () {
+	this.loadLevel(++A.currentLevel);
+    },
+
+    clearMap: function() {
+
+    },
+    
     incrementFill: function () {
 	A.player.fill += 1;
 	if (A.player.fill >= 9) {
