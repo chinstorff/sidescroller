@@ -1,7 +1,7 @@
 Game.Play = function (game) { };
 
-A.playerSpeed = 150;
-A.playerJumpSpeed = 400;
+A.playerSpeed = 120;
+A.playerJumpSpeed = 250;
 A.playerGravity = 1000;
 
 Game.Play.prototype = {
@@ -28,7 +28,7 @@ Game.Play.prototype = {
 	A.keys.W = game.input.keyboard.addKey(Phaser.Keyboard.W);
 
 	var jump = function () {
-	    if (A.player.body.velocity.y === 0) {
+	    if (A.player.body.blocked.down) {
 		A.player.body.velocity.y = -A.playerJumpSpeed;
 	    }
 	};
@@ -40,10 +40,11 @@ Game.Play.prototype = {
     createPlayer: function () {
 	A.player = A.players.children[A.players.length - 1];
 	A.player.anchor.setTo(0.5, -2.5);
+	A.player.x += A.player.width * 0.5;
+	A.player.y -= A.player.height * 2.5;
 	A.player.body.gravity.y = A.playerGravity;
 	A.player.body.collideWorldBounds = true;
 	A.player.fill = 0;
-	A.player.canJump = false;
 
 	game.camera.follow(A.player);
 	game.camera.deadzone = new Phaser.Rectangle(A.w / 16 * 7, 0, A.w / 8, A.h);
@@ -75,7 +76,7 @@ Game.Play.prototype = {
 
 	A.level.layer.sky = A.level.map.createLayer('sky');
 	A.level.layer.blocks = A.level.map.createLayer('blocks');
-	A.level.map.setCollisionBetween(8, 9, true, A.level.layer.blocks);
+	A.level.map.setCollisionBetween(1, 12, true, A.level.layer.blocks);
 	A.level.layer.sky.resizeWorld();
 
 	A.players = game.add.group();
