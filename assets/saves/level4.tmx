@@ -24,7 +24,7 @@
  </objectgroup>
  <layer name="blocks" width="40" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgYGGAABg92MBgd98oGAWjYHAAdix4FCAAJeHDgoQHI6CGu2iZfgZruMEAMfUsBxZMD4Cc7pDZhNyDTZ5WGNl99AwbSgAABGQB5g==
+   eJxjYGBgYGGAABg92MBgd98oGAWjYOABOw48CiCA0vBhQcKDEVDqLlqnn8EabjBAqJ7lwIHpAZDTHTKbkFtwuZkWGNl99AwbSgAAXygB+w==
   </data>
  </layer>
 </map>

@@ -131,7 +131,7 @@ Game.Play.prototype = {
     },
 
     updatePowerups: function () {
-	A.playerJumpSpeed = A.score >= 9 ? 325 : 250;
+	A.playerJumpSpeed = A.level.score >= 9 ? 325 : 250;
     },
 
     takeScarab: function (player, scarab) {
