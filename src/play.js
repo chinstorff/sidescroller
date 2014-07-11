@@ -5,9 +5,10 @@ A.playerJumpSpeed = 250;
 A.playerGravity = 1000;
 A.currentLevel = 0;
 
+A.level = {};
+
 Game.Play.prototype = {
     create: function () {
-	game.stage.backgroundColor = '#e5f2f3';
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.createControls();
 
@@ -24,10 +25,13 @@ Game.Play.prototype = {
 
     createControls: function () {
 	A.keys = game.input.keyboard.createCursorKeys();
+
 	A.keys.A = game.input.keyboard.addKey(Phaser.Keyboard.A);
 	A.keys.S = game.input.keyboard.addKey(Phaser.Keyboard.S);
 	A.keys.D = game.input.keyboard.addKey(Phaser.Keyboard.D);
 	A.keys.W = game.input.keyboard.addKey(Phaser.Keyboard.W);
+
+	A.keys.R = game.input.keyboard.addKey(Phaser.Keyboard.R);
 
 	var jump = function () {
 	    if (A.player.body.blocked.down) {
@@ -37,6 +41,8 @@ Game.Play.prototype = {
 
 	A.keys.up.onDown.add(jump, this);
 	A.keys.W.onDown.add(jump, this);
+
+	A.keys.R.onDown.add(this.restartLevel, this);
     },
 
     createPlayer: function () {
@@ -58,22 +64,24 @@ Game.Play.prototype = {
 
 	if (left) {
 	    A.player.body.velocity.x = -A.playerSpeed;
-	    A.player.frame = 0 + A.player.fill * 3;
+	    A.player.frame = 0 + this.playerFill() * 3;
 	}
 	else if (right) {
 	    A.player.body.velocity.x = A.playerSpeed;
-	    A.player.frame = 2 + A.player.fill * 3;
+	    A.player.frame = 2 + this.playerFill() * 3;
 	}
 	else {
 	    A.player.body.velocity.x = 0;
-	    A.player.frame = 1 + A.player.fill * 3;
+	    A.player.frame = 1 + this.playerFill() * 3;
 	}
     },
 
     loadLevel: function (levelID) {
 	this.clearMap();
-
+	
 	A.level = { layer: {} };
+	A.level.score = A.score;
+
 	A.level.map = game.add.tilemap('level' + levelID);
 	A.level.map.addTilesetImage('blocks', 'blocks');
 	A.level.map.addTilesetImage('sky', 'sky');
@@ -98,22 +106,28 @@ Game.Play.prototype = {
     },
 
     nextLevel: function () {
+	A.score = A.level.score || 0;
 	this.loadLevel(++A.currentLevel);
+    },
+
+    restartLevel: function () {
+	this.loadLevel(A.currentLevel);
     },
 
     clearMap: function() {
 
     },
     
-    incrementFill: function () {
-	A.player.fill += 1;
-	if (A.player.fill >= 9) {
-	    A.player.fill -= 9;
+    playerFill: function () {
+	var fill = A.level.score;
+	while (fill >= 9) {
+	    fill -= 9;
 	}
+	return fill;
     },
 
     takeScarab: function (player, scarab) {
 	scarab.kill();
-	this.incrementFill();
+	A.level.score++;
     },
 };
