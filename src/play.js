@@ -37,10 +37,9 @@ Game.Play.prototype = {
 	A.keys.W.onDown.add(jump, this);
     },
 
-    createPlayer: function (x, y) {
-	A.player = game.add.sprite(x, y, 'player', 1);
+    createPlayer: function () {
+	A.player = A.players.children[A.players.length - 1];
 	A.player.anchor.setTo(0.5, -2.5);
-	game.physics.arcade.enable(A.player);
 	A.player.body.gravity.y = A.playerGravity;
 	A.player.body.collideWorldBounds = true;
 	A.player.fill = 0;
@@ -79,11 +78,14 @@ Game.Play.prototype = {
 	A.level.map.setCollisionBetween(8, 9, true, A.level.layer.blocks);
 	A.level.layer.sky.resizeWorld();
 
+	A.players = game.add.group();
+	A.players.enableBody = true;
+	A.level.map.createFromObjects('objects', 16, 'player', 1, true, false, A.players);
+	this.createPlayer();
+
 	A.scarabs = game.add.group();
 	A.scarabs.enableBody = true;
-	A.level.map.createFromObjects('objects', 58, 'scarab', 0, true, false, A.scarabs);
-	
-	this.createPlayer(50, 100);
+	A.level.map.createFromObjects('objects', 14, 'scarab', 0, true, false, A.scarabs);
     },
 
     incrementFill: function () {
