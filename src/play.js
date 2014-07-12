@@ -6,6 +6,11 @@ A.currentLevel = 0;
 
 A.level = {};
 
+A.level5 = function () {
+    A.score = 9;
+    Game.Play.prototype.loadLevel(5);
+};
+
 Game.Play.prototype = {
     create: function () {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -104,12 +109,12 @@ Game.Play.prototype = {
 	A.endZones = game.add.group();
 	A.endZones.enableBody = true;
 	A.level.map.createFromObjects('objects', 5, 'blocks', 5, true, false, A.endZones);
+
+	this.updatePowerups();
     },
 
     nextLevel: function () {
 	A.score = A.level.score || 0;
-
-	this.updatePowerups();
 
 	this.loadLevel(++A.currentLevel);
     },
